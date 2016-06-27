@@ -2,7 +2,7 @@
 % Please edit documentation in R/ds_plot.R
 \name{ds.plot}
 \alias{ds.plot}
-\title{A function for ploting DataShop Learning Curves}
+\title{A Smooth Plot DataShop Learning Curves}
 \usage{
 ds.plot(stu.step, model, kc = "all", title = "", axis.scale = 1)
 }
@@ -17,9 +17,6 @@ ds.plot(stu.step, model, kc = "all", title = "", axis.scale = 1)
 }
 \description{
 Creates a loess smoothed ggplot from a student step roll up output from Datashop.
-}
-\examples{
-ds.plot()
 }
 \keyword{ds.plot}
 

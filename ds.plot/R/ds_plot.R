@@ -1,5 +1,6 @@
+library(ggplot2)
 
-#' A function for ploting DataShop Learning Curves
+#' A Smooth Plot DataShop Learning Curves
 #'
 #' Creates a loess smoothed ggplot from a student step roll up output from Datashop.
 #'
@@ -11,21 +12,20 @@
 #' @keywords ds.plot
 #' @export
 #' @examples
-#' ds.plot()
 
 ds.plot <- function(stu.step, model, kc="all", title="",axis.scale=1){
-  
+
   mod.name <- paste0("KC (",model,")")
   opp.name <- paste0("Opportunity (",model,")")
   pred.name <- paste0("Predicted Error Rate (",model,")")
-  
+
   ds <- stu.step
   ds$knowledge_component <- as.factor(ds[[mod.name]])
   ds$opportunity <- ds[[opp.name]]
   ds$afm.predict <- ds[[pred.name]]
   ds$actual <- 1
   ds$actual[ds[["First Attempt"]] == "correct"] <- 0
-  
+
   if (kc == "all" || kc < 1) {
     opp <- ds$opportunity
     y <- ds$actual
@@ -49,7 +49,7 @@ ds.plot <- function(stu.step, model, kc="all", title="",axis.scale=1){
   error <- c(y, afm.std)
   label <- as.factor(c(rep("Actual", length(y)), rep("AFM", length(afm.std))))
   plotData = data.frame(opp, error, label)
-  
+
   if(title == "") {
     if(kc.name == "all") {
       title = model
@@ -58,7 +58,7 @@ ds.plot <- function(stu.step, model, kc="all", title="",axis.scale=1){
       title = kc.name
     }
   }
-  
+
   plot <- ggplot() +
     geom_smooth(data=plotData, aes(x=opp, y=error, group=label, color=label, fill=label)) +
     coord_cartesian(ylim=c(0, 1)) +
@@ -72,6 +72,6 @@ ds.plot <- function(stu.step, model, kc="all", title="",axis.scale=1){
       axis.title = element_text(size=rel(axis.scale)),
       legend.position = "none"
     )
-  
+
   return(plot)
 }
