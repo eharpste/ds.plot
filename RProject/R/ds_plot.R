@@ -4,15 +4,16 @@ library(ggplot2)
 #'
 #' Creates a loess smoothed ggplot from a student step roll up output from Datashop.
 #'
-#' @param stu.step   A data.frame of a direct load of a student-step rollup file.
-#' @param model      The name of a KC model to use as it appears in DataShop
-#' @param kc         The name of a particular Kc to get individual kc curves or its number in the list of kcs
-#' @param title      A title for the plot
-#' @param axis.scale A scaling factor for the y axis of the plot.
+#' @param stu.step    A data.frame of a direct load of a student-step rollup file.
+#' @param model       The name of a KC model to use as it appears in DataShop
+#' @param kc          The name of a particular Kc to get individual kc curves or its number in the list of kcs
+#' @param title       A title for the plot
+#' @param line.type   Controls whether to render a "smooth" loess line or "discrete" true averages line.
+#' @param label.scale A scaling factor for the axis label and title text.
 #' @keywords ds.plot
 #' @export
-ds.plot <- function(stu.step, model, kc="all", title=NULL,axis.scale=1){
-
+ds.plot <- function(stu.step, model, kc="all", line.type="smooth", title=NULL, legend.position="none", label.scale=1){
+  line.type <- tolower(line.type)
   mod.name <- paste0("KC (",model,")")
   opp.name <- paste0("Opportunity (",model,")")
   pred.name <- paste0("Predicted Error Rate (",model,")")
@@ -57,19 +58,44 @@ ds.plot <- function(stu.step, model, kc="all", title=NULL,axis.scale=1){
     }
   }
 
-  plot <- ggplot() +
-    geom_smooth(data=plotData, aes(x=opp, y=error, group=label, color=label, fill=label)) +
+  if(substring('discrete', 1, nchar(line.type)) == line.type){
+  plot <- ggplot(data=plotData,
+                 aes(x=opp, y=error, group=label, shape=label, linetype=label, color=label, fill=label)) +
+    geom_smooth(data=plotData,linetype=0) +
+    stat_summary(fun.y="mean", geom="line") +
+    stat_summary(fun.y="mean", geom="point") +
     coord_cartesian(ylim=c(0, 1)) +
     labs(title=title) +
     ylab("Error Rate") +
     xlab("Opportunities") +
     ggtitle(title) +
     theme(
-      plot.title = element_text(size=rel(axis.scale)),
-      axis.text = element_text(size=rel(axis.scale)),
-      axis.title = element_text(size=rel(axis.scale)),
-      legend.position = "none"
+      plot.title = element_text(size=rel(label.scale)),
+      axis.text = element_text(size=rel(label.scale)),
+      axis.title = element_text(size=rel(label.scale)),
+      legend.position = legend.position
     )
+  }
+  else if (substring('smooth', 1, nchar(line.type)) == line.type) {
+    plot <- ggplot(data=plotData,
+                   aes(x=opp, y=error, group=label, linetype=label, color=label, fill=label)) +
+      geom_smooth(data=plotData) +
+      coord_cartesian(ylim=c(0, 1)) +
+      labs(title=title) +
+      ylab("Error Rate") +
+      xlab("Opportunities") +
+      ggtitle(title) +
+      theme(
+        plot.title = element_text(size=rel(label.scale)),
+        axis.text = element_text(size=rel(label.scale)),
+        axis.title = element_text(size=rel(label.scale)),
+        legend.position = legend.position
+      )
+  }
+  else {
+    warning(paste0('Unrecognized line.type "',line.type,'"'))
+    plot <- NULL
+  }
 
   return(plot)
 }
@@ -91,7 +117,7 @@ ds.read <- function(file.name) {
 #' @param height The height in inches (which I default to 2.5)
 #' @param dpi    The dpi to output at (defaults to 300)
 ds.save <- function(plot, name, width=3, height=2.5, dpi=300) {
-  ggsave(plot,name,width=width,height=height,dpi=300,units="in")
+  ggsave(name,plot=plot,width=width,height=height,dpi=300,units="in")
 }
 
 
