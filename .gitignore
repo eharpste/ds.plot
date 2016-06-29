@@ -26,3 +26,6 @@ vignettes/*.pdf
 # personal files to ignore
 setupScript.R
 .Rproj.user
+
+
+geometry96.txt
