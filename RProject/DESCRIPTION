@@ -1,11 +1,13 @@
 Package: DSTools
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: A Package for Working with DataShop StudentStep exports and plotting learning curves
+Version: 0.0.1
+Authors@R: person("Erik", "Harpstead", email = "eharpste@cs.cmu.edu", role = c("aut", "cre"))
+Description: This package is primarily designed to make it eaiser to plot nicer looking and more informative learning curve from student-step export data from DataShop(https://pslcdatashop.web.cmu.edu/). Along with the main plotting function there are a set of utility functions that streamline working with the assumed format of a DataShop export.
 Depends:
     R (>= 3.2.5)
-License: What license is it under?
+Imports:
+    ggplot2 (>= 2.1.0)
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
