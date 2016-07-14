@@ -18,6 +18,7 @@ ds.save(plot, name, width = 3.3, height = 2.08, dpi = 300)
 \item{dpi}{The dpi to output at (defaults to 300)}
 }
 \description{
-Save a ds.plot in a commonly useful png format.
+This is just a basic wrapper around ggplot's ggsave but the default settings make it perfect for fitting into 
+a single column of the ACM/EDM paper format.
 }
 

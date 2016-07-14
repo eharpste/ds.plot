@@ -1,8 +1,9 @@
-#library(ggplot2)
-
-#' A Smooth Plot DataShop Learning Curves
+#' Plot Learning Curves from DataShop Student-Step export data
 #'
-#' Creates a loess smoothed ggplot from a student step roll up output from Datashop.
+#' The main drawback to DataShop's default plotting representation is that it does not properly convey that
+#' N is dropping off in a mastery learning paradigm. This function renders a plot with a loess smoothed
+#' confidence channel around the real data and the AFM estimates to convey this trend. The curves themsevles
+#' can also be plotted loess smoothed (default) for with discrete averages like standard DataShop
 #'
 #' @param stu.step        A data.frame of a direct load of a student-step rollup file.
 #' @param model           The name of a KC model to use as it appears in DataShop

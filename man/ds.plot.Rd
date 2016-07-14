@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{ds.plot}
 \alias{ds.plot}
-\title{A Smooth Plot DataShop Learning Curves}
+\title{Plot Learning Curves from DataShop Student-Step export data}
 \usage{
 ds.plot(stu.step, model, kc = "all", line.type = "smooth", title = NULL,
   legend.position = "none", label.scale = 1)
@@ -23,7 +23,10 @@ ds.plot(stu.step, model, kc = "all", line.type = "smooth", title = NULL,
 \item{label.scale}{A scaling factor for the axis label and title text.}
 }
 \description{
-Creates a loess smoothed ggplot from a student step roll up output from Datashop.
+The main drawback to DataShop's default plotting representation is that it does not properly convey that
+N is dropping off in a mastery learning paradigm. This function renders a plot with a loess smoothed
+confidence channel around the real data and the AFM estimates to convey this trend. The curves themsevles
+can also be plotted loess smoothed (default) for with discrete averages like standard DataShop
 }
 \keyword{ds.plot}
 

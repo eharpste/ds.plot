@@ -2,14 +2,14 @@
 % Please edit documentation in R/models.R
 \name{ds.models}
 \alias{ds.models}
-\title{Return a list of the available KC models in a Student-Step file.}
+\title{List the available KC models in a Student-Step file.}
 \usage{
 ds.models(stu.step)
 }
 \arguments{
-\item{stu.step}{A Student-Step export from datashop}
+\item{stu.step}{A Student-Step export from DataShop}
 }
 \description{
-Return a list of the available KC models in a Student-Step file.
+List the available KC models in a Student-Step file.
 }
 

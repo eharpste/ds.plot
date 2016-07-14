@@ -1,7 +1,8 @@
-#' Return a list of the kcs within a partiuclar model.
+#' List the KCs available within a partiuclar KC model of a DataShop student-step export
 #' 
 #' @param stu.step A DataShop Student-Step export data.frame
 #' @param model    The name of a KC model within the dataset
+#' @export
 ds.kcs <- function(stu.step, model) {
   mod.name <- paste0("KC (",model,")")
   if(mod.name %in% names(stu.step)) {

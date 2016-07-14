@@ -2,7 +2,7 @@
 % Please edit documentation in R/kcs.R
 \name{ds.kcs}
 \alias{ds.kcs}
-\title{Return a list of the kcs within a partiuclar model.}
+\title{List the KCs available within a partiuclar KC model of a DataShop student-step export}
 \usage{
 ds.kcs(stu.step, model)
 }
@@ -12,6 +12,6 @@ ds.kcs(stu.step, model)
 \item{model}{The name of a KC model within the dataset}
 }
 \description{
-Return a list of the kcs within a partiuclar model.
+List the KCs available within a partiuclar KC model of a DataShop student-step export
 }
 
