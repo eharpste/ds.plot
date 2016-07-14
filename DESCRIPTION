@@ -1,13 +1,18 @@
 Package: DSTools
-Title: A Package for Working with DataShop StudentStep exports and plotting learning curves
+Title: A Package for Working with DataShop StudentStep Exports
 Version: 0.0.2
 Authors@R: person("Erik", "Harpstead", email = "eharpste@cs.cmu.edu", role = c("aut", "cre"))
 Description: This package is primarily designed to make it eaiser to plot nicer looking and more informative learning curve from student-step export data from DataShop(https://pslcdatashop.web.cmu.edu/). Along with the main plotting function there are a set of utility functions that streamline working with the assumed format of a DataShop export.
-Depends:
-    R (>= 3.2.5)
-Imports:
-    ggplot2 (>= 2.1.0)
-License: MIT
+Depends: R (>= 3.2.5)
+Imports: ggplot2 (>= 2.1.0)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Collate:
+  'plot.R'
+  'read.R'
+  'kcs.R'
+  'models.R'
+  'save.R'
 RoxygenNote: 5.0.1
+
